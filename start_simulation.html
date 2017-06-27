@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>start_simulation.py &mdash; ChemLab 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChemLab 1.0.0 documentation" href="index.html"/>
+        <link rel="up" title="Command lines" href="commandlines.html"/>
+        <link rel="next" title="Functionals" href="topology.html"/>
+        <link rel="prev" title="Command lines" href="commandlines.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ChemLab
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="commandlines.html">Command lines</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">start_simulation.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#General options">General options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Simulation parameters">Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#H5MD storage">H5MD storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Maximum conversion">Maximum conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Counters">Counters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Hybrid bonds">Hybrid bonds</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topology.html">Functionals</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChemLab</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="commandlines.html">Command lines</a> &raquo;</li>
+      
+    <li>start_simulation.py</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/start_simulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="start-simulation-py">
+<h1>start_simulation.py<a class="headerlink" href="#start-simulation-py" title="Permalink to this headline">¶</a></h1>
+<p>Runs classical MD simulation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">build</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="o">--</span><span class="n">conf</span> <span class="n">CONF</span> <span class="o">--</span><span class="n">top</span> <span class="n">TOP</span> <span class="p">[</span><span class="o">--</span><span class="n">node_grid</span> <span class="n">NODE_GRID</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">skin</span> <span class="n">SKIN</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">output_prefix</span> <span class="n">OUTPUT_PREFIX</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">output_file</span> <span class="n">OUTPUT_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">trj_collect</span> <span class="n">TRJ_COLLECT</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">energy_collect</span> <span class="n">ENERGY_COLLECT</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">topol_collect</span> <span class="n">TOPOL_COLLECT</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">reactions</span> <span class="n">REACTIONS</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">debug</span> <span class="n">DEBUG</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">check_topology</span> <span class="n">CHECK_TOPOLOGY</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">start_ar</span> <span class="n">START_AR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">stop_ar</span> <span class="n">STOP_AR</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">table_groups</span> <span class="n">TABLE_GROUPS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">max_force</span> <span class="n">MAX_FORCE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">rate_arrhenius</span> <span class="n">RATE_ARRHENIUS</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">exclusion_list</span> <span class="n">EXCLUSION_LIST</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">benchmark_data</span> <span class="n">BENCHMARK_DATA</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">system_monitor_filter</span> <span class="n">SYSTEM_MONITOR_FILTER</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">kb</span> <span class="n">KB</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">mass_factor</span> <span class="n">MASS_FACTOR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">run</span> <span class="n">RUN</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">int_step</span> <span class="n">INT_STEP</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">rng_seed</span> <span class="n">RNG_SEED</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">thermal_groups</span> <span class="n">THERMAL_GROUPS</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">gen_velocity</span> <span class="n">GEN_VELOCITY</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">thermostat</span> <span class="p">{</span><span class="n">lv</span><span class="p">,</span><span class="n">vr</span><span class="p">,</span><span class="n">iso</span><span class="p">}]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">barostat</span> <span class="p">{</span><span class="n">lv</span><span class="p">,</span><span class="n">br</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">barostat_tau</span> <span class="n">BAROSTAT_TAU</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">barostat_mass</span> <span class="n">BAROSTAT_MASS</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">barostat_gammaP</span> <span class="n">BAROSTAT_GAMMAP</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">thermostat_gamma</span> <span class="n">THERMOSTAT_GAMMA</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">temperature</span> <span class="n">TEMPERATURE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">pressure</span> <span class="n">PRESSURE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">dt</span> <span class="n">DT</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">lj_cutoff</span> <span class="n">LJ_CUTOFF</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cg_cutoff</span> <span class="n">CG_CUTOFF</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">coulomb_epsilon1</span> <span class="n">COULOMB_EPSILON1</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">coulomb_epsilon2</span> <span class="n">COULOMB_EPSILON2</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">coulomb_kappa</span> <span class="n">COULOMB_KAPPA</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">coulomb_cutoff</span> <span class="n">COULOMB_CUTOFF</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_species</span> <span class="n">STORE_SPECIES</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_state</span> <span class="n">STORE_STATE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_position</span> <span class="n">STORE_POSITION</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_lambda</span> <span class="n">STORE_LAMBDA</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">store_force</span> <span class="n">STORE_FORCE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_velocity</span> <span class="n">STORE_VELOCITY</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_charge</span> <span class="n">STORE_CHARGE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">store_mass</span> <span class="n">STORE_MASS</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_res_id</span> <span class="n">STORE_RES_ID</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_pressure</span> <span class="n">STORE_PRESSURE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_single_precision</span> <span class="n">STORE_SINGLE_PRECISION</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">save_before_reaction</span> <span class="n">SAVE_BEFORE_REACTION</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">trj_flush</span> <span class="n">TRJ_FLUSH</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">gro_trj_collect</span> <span class="n">GRO_TRJ_COLLECT</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">store_angdih</span> <span class="n">STORE_ANGDIH</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">maximum_conversion</span> <span class="n">MAXIMUM_CONVERSION</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">eq_steps</span> <span class="n">EQ_STEPS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">keep_simulation</span> <span class="n">KEEP_SIMULATION</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">count_types</span> <span class="n">COUNT_TYPES</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">count_tuples</span> <span class="n">COUNT_TUPLES</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">count_types_state</span> <span class="n">COUNT_TYPES_STATE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">count_fix_distances</span> <span class="n">COUNT_FIX_DISTANCES</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">t_hybrid_bond</span> <span class="n">T_HYBRID_BOND</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">t_hybrid_angle</span> <span class="n">T_HYBRID_ANGLE</span><span class="p">]</span>
+                    <span class="p">[</span><span class="o">--</span><span class="n">t_hybrid_dihedral</span> <span class="n">T_HYBRID_DIHEDRAL</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="General options">
+<h2>General options<a class="headerlink" href="#General options" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd>--conf</kbd></td>
+<td>Input .gro coordinate file</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--top, --topology</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Topology file</td></tr>
+<tr><td class="option-group">
+<kbd>--node_grid</kbd></td>
+<td></td></tr>
+<tr><td class="option-group">
+<kbd>--skin</kbd></td>
+<td><p class="first">Skin value for Verlet list</p>
+<p class="last">Default: 0.16</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--output_prefix</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Prefix for output files</p>
+<p class="last">Default: “sim”</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--output_file</kbd></td>
+<td><p class="first">Name of output trajectory file</p>
+<p class="last">Default: “trjout.h5”</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--trj_collect</kbd></td>
+<td><p class="first">Collect trajectory every (step)</p>
+<p class="last">Default: 1000</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--energy_collect</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Collect energy every (step)</p>
+<p class="last">Default: 1000</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--topol_collect</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Collect topology every (step)</p>
+<p class="last">Default: 1000</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--reactions</kbd></td>
+<td>Configuration file with chemical reactions</td></tr>
+<tr><td class="option-group">
+<kbd>--debug</kbd></td>
+<td>Turn on logging mechanism</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--check_topology</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">If set to true then show the message generated by TopologyManager</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--start_ar</kbd></td>
+<td><p class="first">When to start chemical reactions</p>
+<p class="last">Default: 0</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--stop_ar</kbd></td>
+<td><p class="first">When to stop chemical reactions</p>
+<p class="last">Default: -1</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--table_groups</kbd></td>
+<td>The list of atom type names that should be simulated with tabulated potential.</td></tr>
+<tr><td class="option-group">
+<kbd>--max_force</kbd></td>
+<td><p class="first">Maximum force in the system.</p>
+<p class="last">Default: -1</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--rate_arrhenius</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Change rate based on the Arrhenius equation.</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--exclusion_list</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Read exclusion list from external file</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--benchmark_data</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Store time measurement in the file</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--system_monitor_filter</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Print all (empty) or only selected elements in SystemMonitor</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="Simulation parameters">
+<h2>Simulation parameters<a class="headerlink" href="#Simulation parameters" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd>--kb</kbd></td>
+<td><p class="first">Boltzmann constant, default kJ/mol</p>
+<p class="last">Default: 0.0083144621</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--mass_factor</kbd></td>
+<td><p class="first">Mass units, default a.u.</p>
+<p class="last">Default: 1.6605402</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--run</kbd></td>
+<td><p class="first">Number of simulation steps</p>
+<p class="last">Default: 10000</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--int_step</kbd></td>
+<td><p class="first">Steps in integrator</p>
+<p class="last">Default: 1000</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--rng_seed</kbd></td>
+<td><p class="first">Seed for RNG</p>
+<p class="last">Default: 2444</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--thermal_groups</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Thermal groups</td></tr>
+<tr><td class="option-group">
+<kbd>--gen_velocity</kbd></td>
+<td><p class="first">Generate velocity or not</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--thermostat</kbd></td>
+<td><p class="first">Possible choices: lv, vr, iso</p>
+<p>Thermostat to use, lv: Langevine, vr: Stochastic velocity rescale</p>
+<p class="last">Default: “lv”</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--barostat</kbd></td>
+<td><p class="first">Possible choices: lv, br</p>
+<p>Barostat to use, lv: Langevine, br: Berendsen</p>
+<p class="last">Default: “lv”</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--barostat_tau</kbd></td>
+<td><p class="first">Tau parameter for Berendsen barostat</p>
+<p class="last">Default: 5.0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--barostat_mass</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Mass parameter for Langevin barostat</p>
+<p class="last">Default: 50.0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--barostat_gammaP</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">gammaP parameter for Langevin barostat</p>
+<p class="last">Default: 1.0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--thermostat_gamma</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Thermostat coupling constant</p>
+<p class="last">Default: 5.0</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--temperature</kbd></td>
+<td><p class="first">Temperature</p>
+<p class="last">Default: 458.0</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--pressure</kbd></td>
+<td>Pressure</td></tr>
+<tr><td class="option-group">
+<kbd>--dt</kbd></td>
+<td><p class="first">Integrator time step</p>
+<p class="last">Default: 0.001</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--lj_cutoff</kbd></td>
+<td><p class="first">Cutoff of atomistic non-bonded interactions</p>
+<p class="last">Default: 1.2</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--cg_cutoff</kbd></td>
+<td><p class="first">Cuoff of coarse-grained non-bonded interactions</p>
+<p class="last">Default: 1.4</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--coulomb_epsilon1</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Epsilon_1 for coulomb interactions</p>
+<p class="last">Default: 1.0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--coulomb_epsilon2</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Epsilon_2 for coulomb interactions</p>
+<p class="last">Default: 80.0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--coulomb_kappa</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Kappa paramter for coulomb interactions</p>
+<p class="last">Default: 0.0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--coulomb_cutoff</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Coulomb cut-off</p>
+<p class="last">Default: 0.9</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="H5MD storage">
+<h2>H5MD storage<a class="headerlink" href="#H5MD storage" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd>--store_species</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Store particle types</p>
+<p class="last">Default: True</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--store_state</kbd></td>
+<td><p class="first">Store chemical state</p>
+<p class="last">Default: True</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--store_position</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Store positions</p>
+<p class="last">Default: True</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--store_lambda</kbd></td>
+<td><p class="first">Store lambda parameter</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--store_force</kbd></td>
+<td><p class="first">Store forces</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--store_velocity</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Store velocity</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--store_charge</kbd></td>
+<td><p class="first">Store charge</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--store_mass</kbd></td>
+<td><p class="first">Store mass</p>
+<p class="last">Default: True</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--store_res_id</kbd></td>
+<td><p class="first">Store res_id</p>
+<p class="last">Default: True</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--store_pressure</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Compute and store pressure</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--store_single_precision</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Write data in single precision format</p>
+<p class="last">Default: True</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--save_before_reaction</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">If True then the trajectory and topology will be saved before reaction</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>--trj_flush</kbd></td>
+<td></td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--gro_trj_collect</kbd></td>
+</tr>
+<tr><td>&#160;</td><td></td></tr>
+<tr><td class="option-group">
+<kbd>--store_angdih</kbd></td>
+<td>Default: False</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="Maximum conversion">
+<h2>Maximum conversion<a class="headerlink" href="#Maximum conversion" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd>--maximum_conversion</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>The comma separated list of conditions on which the simulation will stop. (format: atom type symbol(state):max number:total number)</td></tr>
+<tr><td class="option-group">
+<kbd>--eq_steps</kbd></td>
+<td><p class="first">Run simulation after conversion reached for n-steps</p>
+<p class="last">Default: 0</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--keep_simulation</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Keep simulation running until the conversion is reached</p>
+<p class="last">Default: False</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="Counters">
+<h2>Counters<a class="headerlink" href="#Counters" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd>--count_types</kbd></td>
+<td>List of particle types to count; eq. A,B</td></tr>
+<tr><td class="option-group">
+<kbd>--count_tuples</kbd></td>
+<td><p class="first">Count tuples</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--count_types_state</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>List of particle types, state; eq. A:3,B:4</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--count_fix_distances</kbd></td>
+</tr>
+<tr><td>&#160;</td><td><p class="first">Count size of fix distances</p>
+<p class="last">Default: False</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="Hybrid bonds">
+<h2>Hybrid bonds<a class="headerlink" href="#Hybrid bonds" title="Permalink to this headline">¶</a></h2>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd>--t_hybrid_bond</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Default: 0</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--t_hybrid_angle</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Default: 0</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>--t_hybrid_dihedral</kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Default: 0</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="topology.html" class="btn btn-neutral float-right" title="Functionals" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="commandlines.html" class="btn btn-neutral" title="Command lines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, Jakub Krajniak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+   
+
+</body>
+</html>

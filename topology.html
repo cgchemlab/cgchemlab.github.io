@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Functionals &mdash; ChemLab 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChemLab 1.0.0 documentation" href="index.html"/>
+        <link rel="prev" title="start_simulation.py" href="start_simulation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ChemLab
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="commandlines.html">Command lines</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functionals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nonbonded-potentials">Nonbonded potentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lennard-jones">Lennard-Jones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tabulated-conversion">Tabulated (conversion)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tabulated-mixed-conversion">Tabulated (mixed, conversion)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bonded-potentials">Bonded potentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#harmonic-bond">Harmonic bond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fene-bond">FENE bond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#harmonic-angle">Harmonic angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cosine-angle">Cosine angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#harmonic-n-cosine-dihedral">Harmonic n-cosine dihedral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ryckaert-bellemans-dihedral">Ryckaert Bellemans dihedral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dihedral-harmonic">Dihedral Harmonic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#topology-file">Topology file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bondtypes">[ bondtypes ]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#angletypes">[ angletypes ]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dihedraltypes">[ dihedraltypes ]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nonbond-params">[ nonbond_params ]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChemLab</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Functionals</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/topology.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="functionals">
+<h1>Functionals<a class="headerlink" href="#functionals" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nonbonded-potentials">
+<h2>Nonbonded potentials<a class="headerlink" href="#nonbonded-potentials" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lennard-jones">
+<h3>Lennard-Jones<a class="headerlink" href="#lennard-jones" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="lj">
+\[U(r_{ij}) = 4\epsilon\left [ \left ( \frac{\sigma}{r_{ij}} \right)^{12} - \left ( \frac{\sigma}{r_{ij}} \right)^6 \right ]\]</div>
+</div>
+<div class="section" id="tabulated-conversion">
+<h3>Tabulated (conversion)<a class="headerlink" href="#tabulated-conversion" title="Permalink to this headline">¶</a></h3>
+<p id="tc">The appropriate table is selected, based on current chemical conversion.</p>
+</div>
+<div class="section" id="tabulated-mixed-conversion">
+<h3>Tabulated (mixed, conversion)<a class="headerlink" href="#tabulated-mixed-conversion" title="Permalink to this headline">¶</a></h3>
+<p>Arithmetic mixing of two tabulated potentials</p>
+<p><strong>Input</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>tab1: first tabulated potential</li>
+<li>tab2: second tabulated potential</li>
+<li>type: the type of particles to count in order to calculate conversion</li>
+<li>total_number: the total expected number of particles of given type <strong>M</strong></li>
+</ul>
+</div></blockquote>
+<p>The conversion is defined as:</p>
+<div class="math">
+\[\Phi = \frac{N_{type}}{M}\]</div>
+<p>And the effective potential:</p>
+<div class="math">
+\[U(r_{ij}) = \Phi U^{tab1} + (1-\Phi) U^{tab2}\]</div>
+</div>
+</div>
+<div class="section" id="bonded-potentials">
+<h2>Bonded potentials<a class="headerlink" href="#bonded-potentials" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="harmonic-bond">
+<h3>Harmonic bond<a class="headerlink" href="#harmonic-bond" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eq1">
+\[U(r) = K(r-r0)^2\]</div>
+</div>
+<div class="section" id="fene-bond">
+<h3>FENE bond<a class="headerlink" href="#fene-bond" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eqfene">
+\[U(r) = -\frac{1}{2} K b^2 log \left( 1 - \frac{r^2}{b^2} \right)\]</div>
+</div>
+<div class="section" id="harmonic-angle">
+<h3>Harmonic angle<a class="headerlink" href="#harmonic-angle" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eq2">
+\[U(\theta) = K(\theta - \theta_0)^2\]</div>
+</div>
+<div class="section" id="cosine-angle">
+<h3>Cosine angle<a class="headerlink" href="#cosine-angle" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eq3">
+\[U(\theta) = K(1.0 + cos(\theta - \theta_0))\]</div>
+</div>
+<div class="section" id="harmonic-n-cosine-dihedral">
+<h3>Harmonic n-cosine dihedral<a class="headerlink" href="#harmonic-n-cosine-dihedral" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eq4">
+\[U(\phi) = K(1 + cos(multiplicity*\phi - \phi_0));\]</div>
+</div>
+<div class="section" id="ryckaert-bellemans-dihedral">
+<h3>Ryckaert Bellemans dihedral<a class="headerlink" href="#ryckaert-bellemans-dihedral" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eq5">
+\[U(\phi) = \sum^{5}_{n=0} K_n cos^n(\phi)\]</div>
+</div>
+<div class="section" id="dihedral-harmonic">
+<h3>Dihedral Harmonic<a class="headerlink" href="#dihedral-harmonic" title="Permalink to this headline">¶</a></h3>
+<div class="math" id="eq7">
+\[U(\phi) = \frac{1}{2} K (\phi - \phi_0)^2\]</div>
+</div>
+</div>
+<div class="section" id="topology-file">
+<h2>Topology file<a class="headerlink" href="#topology-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bondtypes">
+<h3>[ bondtypes ]<a class="headerlink" href="#bondtypes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="13%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name of interaction</th>
+<th class="head">func</th>
+<th class="head">params</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Harmonic <a class="reference internal" href="#eq1">eq1</a></td>
+<td>1</td>
+<td>r0, K <a class="footnote-reference" href="#id2" id="id1">[1]</a></td>
+</tr>
+<tr class="row-odd"><td>FENE <a class="reference internal" href="#eqfene">eqFENE</a></td>
+<td>7</td>
+<td>r0, K</td>
+</tr>
+<tr class="row-even"><td>Tabulated</td>
+<td>8</td>
+<td>table index</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Force constant internally divided by 2.0</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="angletypes">
+<h3>[ angletypes ]<a class="headerlink" href="#angletypes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="49%" />
+<col width="10%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name of interaction</th>
+<th class="head">func</th>
+<th class="head">params</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Harmonic <a class="reference internal" href="#eq2">eq2</a></td>
+<td>1</td>
+<td>theta0 (deg), K <a class="footnote-reference" href="#id5" id="id3">[2]</a></td>
+</tr>
+<tr class="row-odd"><td>Tabulated</td>
+<td>8</td>
+<td>table index</td>
+</tr>
+<tr class="row-even"><td>Cosine   <a class="reference internal" href="#eq3">eq3</a></td>
+<td>11</td>
+<td>theta0 (deg), K <a class="footnote-reference" href="#id5" id="id4">[2]</a></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> Force constant internally divided by 2.0</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="dihedraltypes">
+<h3>[ dihedraltypes ]<a class="headerlink" href="#dihedraltypes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="9%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name of interaction</th>
+<th class="head">func</th>
+<th class="head">params</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>HarmonicNCos  <a class="reference internal" href="#eq4">eq4</a></td>
+<td>1</td>
+<td>phi0 (deg), K, multiplicity</td>
+</tr>
+<tr class="row-odd"><td>Ryckaert Bellemans  <a class="reference internal" href="#eq5">eq5</a></td>
+<td>3</td>
+<td>K0, K1, K2, K3, K4, K5</td>
+</tr>
+<tr class="row-even"><td>Tabulated</td>
+<td>8</td>
+<td>table index</td>
+</tr>
+<tr class="row-odd"><td>Harmonic  <a class="reference internal" href="#eq7">eq7</a></td>
+<td>12</td>
+<td>phi0 (deg), K</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nonbond-params">
+<h3>[ nonbond_params ]<a class="headerlink" href="#nonbond-params" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="4%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name of interaction</th>
+<th class="head">func</th>
+<th class="head">params</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Lennard-Jones       <a class="reference internal" href="#lj">lj</a></td>
+<td>1</td>
+<td>sigma*, epsilon*</td>
+</tr>
+<tr class="row-odd"><td>Tabulated</td>
+<td>8</td>
+<td>filename*</td>
+</tr>
+<tr class="row-even"><td>Tabulated (conversion) <a class="reference internal" href="#tc">tc</a></td>
+<td>9</td>
+<td>filename*, type, total number, p_min, p_max, is_default*</td>
+</tr>
+<tr class="row-odd"><td>Tabulated (mixed, conversion)</td>
+<td>10</td>
+<td>tab1, tab2, type, total_number</td>
+</tr>
+<tr class="row-even"><td>Tabulated scaled by lambda</td>
+<td>11</td>
+<td>filename*, max_force*</td>
+</tr>
+<tr class="row-odd"><td>Tabulated (mixed, static)</td>
+<td>12</td>
+<td>tab1, tab2, mix value</td>
+</tr>
+<tr class="row-even"><td>Tabulated (cap radius)</td>
+<td>13</td>
+<td>filename, cap radius</td>
+</tr>
+<tr class="row-odd"><td>Tabulated (scalled pairs)</td>
+<td>14</td>
+<td>filename, scale increment, max_force*</td>
+</tr>
+<tr class="row-even"><td>Lennard-Jones scaled by lambda</td>
+<td>15</td>
+<td>sigma*, epsilon*, max_force*</td>
+</tr>
+<tr class="row-odd"><td>Lennard-Jones capped</td>
+<td>16</td>
+<td>sigma*, epsilon*, cap radius</td>
+</tr>
+</tbody>
+</table>
+<p>Parameters with * are optional.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="start_simulation.html" class="btn btn-neutral" title="start_simulation.py" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, Jakub Krajniak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+   
+
+</body>
+</html>
