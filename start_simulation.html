@@ -35,7 +35,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="ChemLab 1.0.0 documentation" href="index.html"/>
         <link rel="up" title="Command lines" href="commandlines.html"/>
-        <link rel="next" title="Functionals" href="topology.html"/>
+        <link rel="next" title="Topology file format" href="topology.html"/>
         <link rel="prev" title="Command lines" href="commandlines.html"/> 
 
   
@@ -79,6 +79,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mdparams.html">Molecular dynamics parameters</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="commandlines.html">Command lines</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">start_simulation.py</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#General options">General options</a></li>
@@ -86,12 +87,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#H5MD storage">H5MD storage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Maximum conversion">Maximum conversion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Counters">Counters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Hybrid bonds">Hybrid bonds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Hybrid bonded terms">Hybrid bonded terms</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="topology.html">Functionals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topology.html">Topology file format</a></li>
 </ul>
 
             
@@ -140,7 +141,7 @@
             
   <div class="section" id="start-simulation-py">
 <h1>start_simulation.py<a class="headerlink" href="#start-simulation-py" title="Permalink to this headline">¶</a></h1>
-<p>Runs classical MD simulation</p>
+<p id="startsimulation">Runs classical MD simulation</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">build</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="o">--</span><span class="n">conf</span> <span class="n">CONF</span> <span class="o">--</span><span class="n">top</span> <span class="n">TOP</span> <span class="p">[</span><span class="o">--</span><span class="n">node_grid</span> <span class="n">NODE_GRID</span><span class="p">]</span>
                     <span class="p">[</span><span class="o">--</span><span class="n">skin</span> <span class="n">SKIN</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">output_prefix</span> <span class="n">OUTPUT_PREFIX</span><span class="p">]</span>
                     <span class="p">[</span><span class="o">--</span><span class="n">output_file</span> <span class="n">OUTPUT_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">trj_collect</span> <span class="n">TRJ_COLLECT</span><span class="p">]</span>
@@ -319,7 +320,7 @@
 <tr><td class="option-group">
 <kbd>--rng_seed</kbd></td>
 <td><p class="first">Seed for RNG</p>
-<p class="last">Default: 2444</p>
+<p class="last">Default: 1114</p>
 </td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd>--thermal_groups</kbd></td>
@@ -551,8 +552,8 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="Hybrid bonds">
-<h2>Hybrid bonds<a class="headerlink" href="#Hybrid bonds" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Hybrid bonded terms">
+<h2>Hybrid bonded terms<a class="headerlink" href="#Hybrid bonded terms" title="Permalink to this headline">¶</a></h2>
 <table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
 <col class="description" />
@@ -560,7 +561,9 @@
 <tr><td class="option-group" colspan="2">
 <kbd>--t_hybrid_bond</kbd></td>
 </tr>
-<tr><td>&#160;</td><td>Default: 0</td></tr>
+<tr><td>&#160;</td><td><p class="first">Use hybrid bonds</p>
+<p class="last">Default: 0</p>
+</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd>--t_hybrid_angle</kbd></td>
 </tr>
@@ -581,7 +584,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="topology.html" class="btn btn-neutral float-right" title="Functionals" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="topology.html" class="btn btn-neutral float-right" title="Topology file format" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="commandlines.html" class="btn btn-neutral" title="Command lines" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

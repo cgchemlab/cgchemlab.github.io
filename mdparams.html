@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Molecular dynamics parameters &mdash; ChemLab 1.0.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChemLab 1.0.0 documentation" href="index.html"/>
+        <link rel="next" title="Command lines" href="commandlines.html"/>
+        <link rel="prev" title="Welcome to ChemLab’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ChemLab
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Molecular dynamics parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-information">General information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-options">General options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running">Running</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commandlines.html">Command lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topology.html">Topology file format</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChemLab</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Molecular dynamics parameters</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/mdparams.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="molecular-dynamics-parameters">
+<h1>Molecular dynamics parameters<a class="headerlink" href="#molecular-dynamics-parameters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-information">
+<h2>General information<a class="headerlink" href="#general-information" title="Permalink to this headline">¶</a></h2>
+<p>The entry script for ChemLab is in <cite>src/start_simulation.py</cite> which provides a number of command-line options.
+The complete list can be found here: <a class="reference internal" href="start_simulation.html"><span class="doc">start_simulation.py</span></a>.</p>
+<p>All options described here can be either passed by <cite>–&lt;option_name&gt;</cite> in the command-line or placed in the <cite>params</cite> file.
+The parameters from <cite>params</cite> file can be loaded by:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ python src/start_simulation.py @params
+</pre></div>
+</div>
+<div class="section" id="general-options">
+<h3>General options<a class="headerlink" href="#general-options" title="Permalink to this headline">¶</a></h3>
+<dl class="glossary docutils">
+<dt id="term-conf">conf</dt>
+<dd>Input coordinate file. Currently only <cite>.gro</cite> file format is supported.</dd>
+<dt id="term-topol">topol</dt>
+<dd>Input topology file. This is a GROMACS-like file format. See: <a class="reference internal" href="topology.html"><span class="doc">Topology file format</span></a>.</dd>
+<dt id="term-node-grid">node_grid</dt>
+<dd>If provided then use a custom node grid, format: <cite>node_x,node_y,node_z</cite>.</dd>
+<dt id="term-skin">skin</dt>
+<dd>The parameter for Verlet list algorithm.</dd>
+<dt id="term-output-prefix">output_prefix</dt>
+<dd>Add prefix to all output files.</dd>
+<dt id="term-trj-collect">trj_collect</dt>
+<dd>Collect trajectory every <cite>n</cite>-steps.</dd>
+<dt id="term-energy-collect">energy_collect</dt>
+<dd>Collect system information like potential energy, temperature and others every <cite>n</cite>-steps.</dd>
+<dt id="term-topol-collect">topol_collect</dt>
+<dd>Collect topology information every <cite>n</cite>-steps. The information are stored in HDF5 file along with trajectory
+information.</dd>
+<dt id="term-reactions">reactions</dt>
+<dd>The reaction settings file.</dd>
+<dt id="term-exclusion-list">exclusion_list</dt>
+<dd>The file with the list of particle pairs to be excluded from non-bonded interactions.</dd>
+<dt id="term-max-force">max_force</dt>
+<dd>The maximum value of the force in the system. If the force computed on any particle is larger than this value
+then the <cite>max_force</cite> is used (preserving the direction of force vector).</dd>
+</dl>
+</div>
+<div class="section" id="running">
+<h3>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h3>
+<dl class="glossary docutils">
+<dt id="term-run">run</dt>
+<dd>The number of simulation steps to run</dd>
+<dt id="term-start-ar">start_ar</dt>
+<dd>The simulation step when the chemical reactions are enabled</dd>
+<dt id="term-stop-ar">stop_ar</dt>
+<dd>The simulation step when the chemical reactions are disabled</dd>
+<dt id="term-rng-seed">rng_seed</dt>
+<dd>The seed for random number generator.</dd>
+<dt id="term-gen-velocity">gen_velocity</dt>
+<dd>Generate velocities according to Maxwell-Boltzmann distribution</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="commandlines.html" class="btn btn-neutral float-right" title="Command lines" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to ChemLab’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015-2017, Jakub Krajniak.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+   
+
+</body>
+</html>
