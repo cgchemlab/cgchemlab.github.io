@@ -69,8 +69,8 @@ FENE bond
    U(r) = -\frac{1}{2} K b^2 log \left( 1 - \frac{r^2}{b^2} \right)
 
 
-FENE bond
-++++++++++++++++
+FENE bond with LJ interactions included
+++++++++++++++++++++++++++++++++++++++++++
 
 .. _eqFENELJ:
 

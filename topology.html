@@ -89,7 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#bonded-potentials">Bonded potentials</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#harmonic-bond">Harmonic bond</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fene-bond">FENE bond</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">FENE bond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fene-bond-with-lj-interactions-included">FENE bond with LJ interactions included</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#harmonic-angle">Harmonic angle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cosine-angle">Cosine angle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#harmonic-n-cosine-dihedral">Harmonic n-cosine dihedral</a></li>
@@ -195,8 +195,8 @@
 <div class="math" id="eqfene">
 \[U(r) = -\frac{1}{2} K b^2 log \left( 1 - \frac{r^2}{b^2} \right)\]</div>
 </div>
-<div class="section" id="id1">
-<h3>FENE bond<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fene-bond-with-lj-interactions-included">
+<h3>FENE bond with LJ interactions included<a class="headerlink" href="#fene-bond-with-lj-interactions-included" title="Permalink to this headline">¶</a></h3>
 <div class="math" id="eqfenelj">
 \[U(r) = -\frac{1}{2} K b^2 log \left( 1 - \frac{r^2}{b^2} \right) + 4\epsilon\left [ \left ( \frac{\sigma}{r_{ij}} \right)^{12} - \left ( \frac{\sigma}{r_{ij}} \right)^6 \right ]\]</div>
 </div>
@@ -246,15 +246,15 @@
 <tbody valign="top">
 <tr class="row-even"><td>Harmonic <a class="reference internal" href="#eq1">eq1</a></td>
 <td>1</td>
-<td>r0, K <a class="footnote-reference" href="#id5" id="id2">[1]</a></td>
+<td>r0, K <a class="footnote-reference" href="#id4" id="id1">[1]</a></td>
 </tr>
 <tr class="row-odd"><td>FENE <a class="reference internal" href="#eqfene">eqFENE</a></td>
 <td>7</td>
-<td>b, K <a class="footnote-reference" href="#id5" id="id3">[1]</a></td>
+<td>b, K <a class="footnote-reference" href="#id4" id="id2">[1]</a></td>
 </tr>
 <tr class="row-even"><td>Tabulated</td>
 <td>8</td>
-<td>table index <a class="footnote-reference" href="#id8" id="id4">[2]</a></td>
+<td>table index <a class="footnote-reference" href="#id7" id="id3">[2]</a></td>
 </tr>
 <tr class="row-odd"><td>FENE + LJ <a class="reference internal" href="#eqfenelj">eqFENELJ</a></td>
 <td>9</td>
@@ -262,10 +262,10 @@
 </tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id2">1</a>, <a class="fn-backref" href="#id3">2</a>)</em> Force constant internally divided by 2.0</td></tr>
+<tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> Force constant internally divided by 2.0</td></tr>
 </tbody>
 </table>
 </div>
@@ -286,7 +286,7 @@
 <tbody valign="top">
 <tr class="row-even"><td>Harmonic <a class="reference internal" href="#eq2">eq2</a></td>
 <td>1</td>
-<td>theta0 (deg), K <a class="footnote-reference" href="#id8" id="id6">[2]</a></td>
+<td>theta0 (deg), K <a class="footnote-reference" href="#id7" id="id5">[2]</a></td>
 </tr>
 <tr class="row-odd"><td>Tabulated</td>
 <td>8</td>
@@ -294,14 +294,14 @@
 </tr>
 <tr class="row-even"><td>Cosine   <a class="reference internal" href="#eq3">eq3</a></td>
 <td>11</td>
-<td>theta0 (deg), K <a class="footnote-reference" href="#id8" id="id7">[2]</a></td>
+<td>theta0 (deg), K <a class="footnote-reference" href="#id7" id="id6">[2]</a></td>
 </tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
+<table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id4">1</a>, <a class="fn-backref" href="#id6">2</a>, <a class="fn-backref" href="#id7">3</a>)</em> Force constant internally divided by 2.0</td></tr>
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id5">2</a>, <a class="fn-backref" href="#id6">3</a>)</em> Force constant internally divided by 2.0</td></tr>
 </tbody>
 </table>
 </div>
@@ -364,11 +364,11 @@ parameters in the table below.</p>
 <tbody valign="top">
 <tr class="row-even"><td>Lennard-Jones       <a class="reference internal" href="#lj">lj</a></td>
 <td>1</td>
-<td>sigma <a class="footnote-reference" href="#f1" id="id9">[3]</a>, epsilon <a class="footnote-reference" href="#f1" id="id10">[3]</a></td>
+<td>sigma <a class="footnote-reference" href="#f1" id="id8">[3]</a>, epsilon <a class="footnote-reference" href="#f1" id="id9">[3]</a></td>
 </tr>
 <tr class="row-odd"><td>Tabulated</td>
 <td>8</td>
-<td>filename <a class="footnote-reference" href="#f2" id="id11">[4]</a></td>
+<td>filename <a class="footnote-reference" href="#f2" id="id10">[4]</a></td>
 </tr>
 <tr class="row-even"><td>Tabulated (conversion) <a class="reference internal" href="#tc">tc</a></td>
 <td>9</td>
@@ -406,7 +406,7 @@ parameters in the table below.</p>
 <td>17</td>
 <td>type, total number, p_min:p_max:table1:table2, p_min:p_max:table1:table2, p_min:p_max:table1:table2, …</td>
 </tr>
-<tr class="row-odd"><td>Tabulated (scaled pairs from file) <a href="#id12"><span class="problematic" id="id13">ts_</span></a></td>
+<tr class="row-odd"><td>Tabulated (scaled pairs from file) <a href="#id11"><span class="problematic" id="id12">ts_</span></a></td>
 <td>18</td>
 <td>tab filename, pair list filename, scaling factor (default: 0.0)</td>
 </tr>
@@ -416,13 +416,13 @@ parameters in the table below.</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id9">1</a>, <a class="fn-backref" href="#id10">2</a>)</em> If not set then the values are taken from the included force-field.</td></tr>
+<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> If not set then the values are taken from the included force-field.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[4]</a></td><td>if the filename is not given then it will be constructed from atom type names: ‘table_T1_T2.xvg’ where T1, T2 are</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id10">[4]</a></td><td>if the filename is not given then it will be constructed from atom type names: ‘table_T1_T2.xvg’ where T1, T2 are</td></tr>
 </tbody>
 </table>
 <p>type names.</p>
