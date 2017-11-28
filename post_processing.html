@@ -155,9 +155,54 @@
             
   <div class="section" id="post-processing-modules">
 <h1>Post-processing modules<a class="headerlink" href="#post-processing-modules" title="Permalink to this headline">¶</a></h1>
-<p>The list of post-processing modules available directly from <cite>.cfg</cite> file.</p>
+<p>The list of post-processing modules available directly from <cite>.cfg</cite> file.
+Those modules have to be attached to reaction groups.</p>
+<p>In the example below, we defined a reaction group <code class="docutils literal"><span class="pre">abc</span></code> with three extensions: <code class="docutils literal"><span class="pre">release_molecule</span></code>,
+<code class="docutils literal"><span class="pre">join_molecule</span></code> and <code class="docutils literal"><span class="pre">remove_bond</span></code>.
+The name of those extensions have to corresponds to the <code class="docutils literal"><span class="pre">ext_</span></code> sections in the <code class="docutils literal"><span class="pre">.cfg</span></code> file.
+Here, we only show section <code class="docutils literal"><span class="pre">ext_remove_bond</span></code> that corresponds to extensions <code class="docutils literal"><span class="pre">remove_bond</span></code>.</p>
+<p>Every <em>extension</em> section have at least two variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">ext_type</span></code> defines the extension type (required)</li>
+<li><code class="docutils literal"><span class="pre">invoke_on</span></code> declares on which reactant type the extension will be invoked.
+The possible options are: <code class="docutils literal"><span class="pre">type_1</span></code>, <code class="docutils literal"><span class="pre">type_2</span></code>, <code class="docutils literal"><span class="pre">both</span></code> (default: <code class="docutils literal"><span class="pre">both</span></code>)</li>
+</ul>
+</div></blockquote>
+<p>Every of the <em>extension</em> section have to set <code class="docutils literal"><span class="pre">ext_type</span></code> variable. Other variables in
+this file are related to the particular extension.</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[ext_remove_bond]</span>
+<span class="na">ext_type:RemoveNeighboursBonds</span>
+<span class="na">bonds_to_remove</span><span class="o">=</span><span class="s">C-&gt;C:E:1</span>
+<span class="na">invoke_on</span><span class="o">=</span><span class="s">type_1</span>
+
+<span class="k">[group_abc]</span>
+<span class="na">potential:Harmonic</span>
+<span class="na">potential_options:K</span><span class="o">=</span><span class="s">13622.3,r0=0.256395</span>
+<span class="na">extensions:release_molecule,join_molecule,remove_bond</span>
+</pre></div>
+</div>
 <div class="section" id="change-neighbour-property">
 <h2>Change neighbour property<a class="headerlink" href="#change-neighbour-property" title="Permalink to this headline">¶</a></h2>
+<p>It allows changing property at certain topological distance from the reactant.</p>
+<dl class="glossary docutils">
+<dt id="term-ext-type">ext_type</dt>
+<dd>ChangeNeighboursProperty</dd>
+<dt id="term-type-transfers">type_transfers</dt>
+<dd><p class="first">The comma separated list of <code class="docutils literal"><span class="pre">type_transfer</span></code> definitions.
+The syntax of single <code class="docutils literal"><span class="pre">type_transfer</span></code>:
+<code class="docutils literal"><span class="pre">old_type:distance</span> <span class="pre">-&gt;</span> <span class="pre">new_type(opt1,opt2)</span></code>
+where <code class="docutils literal"><span class="pre">opt1</span></code> are optional new parameters of the particle like:</p>
+<blockquote>
+<div><ul class="simple">
+<li>mass: new mass</li>
+<li>q: new charge</li>
+<li>state: new chemical state</li>
+</ul>
+</div></blockquote>
+<p class="last">The parameters set here will override the one defined in the topology file.</p>
+</dd>
+</dl>
 </div>
 </div>
 
