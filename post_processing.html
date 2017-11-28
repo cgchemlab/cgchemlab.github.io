@@ -88,6 +88,12 @@
 <li class="toctree-l1"><a class="reference internal" href="topology.html">Topology file format</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Post-processing modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#change-neighbour-property">Change neighbour property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remove-neighbour-bond">Remove neighbour bond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-molecule">Release molecule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#join-molecule">Join molecule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#freeze-regions">Freeze regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#change-randomly-particle-type">Change randomly particle type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulate-atrp-class-of-the-reactions">Simulate ATRP class of the reactions</a></li>
 </ul>
 </li>
 </ul>
@@ -184,7 +190,7 @@ this file are related to the particular extension.</p>
 </div>
 <div class="section" id="change-neighbour-property">
 <h2>Change neighbour property<a class="headerlink" href="#change-neighbour-property" title="Permalink to this headline">¶</a></h2>
-<p>It allows changing property at certain topological distance from the reactant.</p>
+<p>It allows changing property at certain topological distance from the reacted particle..</p>
 <dl class="glossary docutils">
 <dt id="term-ext-type">ext_type</dt>
 <dd>ChangeNeighboursProperty</dd>
@@ -202,6 +208,85 @@ where <code class="docutils literal"><span class="pre">opt1</span></code> are op
 </div></blockquote>
 <p class="last">The parameters set here will override the one defined in the topology file.</p>
 </dd>
+</dl>
+</div>
+<div class="section" id="remove-neighbour-bond">
+<h2>Remove neighbour bond<a class="headerlink" href="#remove-neighbour-bond" title="Permalink to this headline">¶</a></h2>
+<p>Remove a bond that is at certain topological distance from the reacted particle.</p>
+<dl class="glossary docutils">
+<dt id="term-2">ext_type</dt>
+<dd>RemoveNeighboursBonds</dd>
+<dt id="term-bonds-to-remove">bonds_to_remove</dt>
+<dd>The comma separated list of <code class="docutils literal"><span class="pre">bonds_to_remove</span></code> definitions.
+The syntax of single <code class="docutils literal"><span class="pre">bonds_to_remove</span></code>:
+<code class="docutils literal"><span class="pre">anchor_type</span> <span class="pre">-&gt;</span> <span class="pre">type1:type2:distance</span></code>
+where <code class="docutils literal"><span class="pre">anchor_type</span></code> is the type of <em>root</em> particle, from where the distance is measured,
+<code class="docutils literal"><span class="pre">type1:type2</span></code> is the bond to remove (in terms of particle types) at <code class="docutils literal"><span class="pre">distance</span></code>.</dd>
+</dl>
+</div>
+<div class="section" id="release-molecule">
+<h2>Release molecule<a class="headerlink" href="#release-molecule" title="Permalink to this headline">¶</a></h2>
+<p>Remove the distance constraint and release a molecule linked to host molecule.</p>
+<dl class="glossary docutils">
+<dt id="term-4">ext_type</dt>
+<dd>ReleaseMolecule</dd>
+<dt id="term-host-type">host_type</dt>
+<dd>The type of host particle.</dd>
+<dt id="term-target-type">target_type</dt>
+<dd>The type of dummy non-released particle.</dd>
+<dt id="term-eq-length">eq_length</dt>
+<dd>The distance at which the dummy particle is placed from the host particle.</dd>
+<dt id="term-alpha">alpha</dt>
+<dd>The rate constant used to fade in the dummy particle after released.</dd>
+<dt id="term-init-res">init_res</dt>
+<dd>The initial resolution of the dummy particle after released.</dd>
+<dt id="term-final-type">final_type</dt>
+<dd>The final type of the dummy particle after completely fade in (resolution 1)</dd>
+<dt id="term-cache-file">cache_file</dt>
+<dd>The cache file for dummy particles (optional)</dd>
+<dt id="term-replicate">replicate</dt>
+<dd>How many dummy particles should be attached to a single host particle (default: 1)</dd>
+<dt id="term-release-on">release_on</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">type</span></code> then the particle will be released whenever the host particle change a type (default)</li>
+<li><code class="docutils literal"><span class="pre">release_on</span></code> remove whenever host particle react with other particle</li>
+</ul>
+</dd>
+<dt id="term-release-count">release_count</dt>
+<dd>number of particles to release (default: 1)</dd>
+</dl>
+</div>
+<div class="section" id="join-molecule">
+<h2>Join molecule<a class="headerlink" href="#join-molecule" title="Permalink to this headline">¶</a></h2>
+<p>Add the distance constraint and make invisible one of the particles.</p>
+<dl class="glossary docutils">
+<dt id="term-15">ext_type</dt>
+<dd>JoinMolecule</dd>
+</dl>
+</div>
+<div class="section" id="freeze-regions">
+<h2>Freeze regions<a class="headerlink" href="#freeze-regions" title="Permalink to this headline">¶</a></h2>
+<p>Define that the box edges will play a role a freeze regions. Whenever a particle of given
+type reaches this region, it becomes invisible.</p>
+<dl class="glossary docutils">
+<dt id="term-16">ext_type</dt>
+<dd>FreezeRegion</dd>
+</dl>
+</div>
+<div class="section" id="change-randomly-particle-type">
+<h2>Change randomly particle type<a class="headerlink" href="#change-randomly-particle-type" title="Permalink to this headline">¶</a></h2>
+<p>Chang randomly particle types during the simulation</p>
+<dl class="glossary docutils">
+<dt id="term-17">ext_type</dt>
+<dd>ChangeParticleType</dd>
+</dl>
+</div>
+<div class="section" id="simulate-atrp-class-of-the-reactions">
+<h2>Simulate ATRP class of the reactions<a class="headerlink" href="#simulate-atrp-class-of-the-reactions" title="Permalink to this headline">¶</a></h2>
+<p>Chang randomly particle types during the simulation</p>
+<dl class="glossary docutils">
+<dt id="term-18">ext_type</dt>
+<dd>ATRPActivator</dd>
 </dl>
 </div>
 </div>
